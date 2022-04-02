@@ -6376,9 +6376,9 @@ const selectCount = (state) => state.counter.value;
 
 const Nav = () => {
     return (react.createElement("div", { className: "header" },
-        react.createElement(Link, { to: 'redux/p1' },
+        react.createElement(Link, { to: 'redux-test-site/' },
             react.createElement("button", null, "page1")),
-        react.createElement(Link, { to: 'redux/p2' },
+        react.createElement(Link, { to: 'redux-test-site/p2' },
             react.createElement("button", null, "page2"))));
 };
 /* harmony default export */ const pages_Nav = (Nav);
@@ -6425,8 +6425,8 @@ const App = () => {
         react.createElement(BrowserRouter, null,
             react.createElement(pages_Nav, null),
             react.createElement(Routes, null,
-                react.createElement(Route, { path: 'redux/p1', element: react.createElement(pages_PageOne, null) }),
-                react.createElement(Route, { path: 'redux/p2', element: react.createElement(pages_PageTwo, null) }),
+                react.createElement(Route, { path: 'redux-test-site/', element: react.createElement(pages_PageOne, null) }),
+                react.createElement(Route, { path: 'redux-test-site/p2', element: react.createElement(pages_PageTwo, null) }),
                 react.createElement(Route, { index: true, element: react.createElement(pages_PageOne, null) }),
                 react.createElement(Route, { path: "*", element: react.createElement(pages_PageOne, null) })),
             react.createElement("p", null, "Page1 shows buttons and counter. Page2 is a different component and shows only counter. Redux is storing the counter and it is storing it in localstorage incase page is reloaded."))));
