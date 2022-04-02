@@ -5,7 +5,7 @@ export const Nav: React.FC = () => {
 
     return(
     <div className="header">
-        <Link to='/'>
+        <Link to='/p1'>
             <button>
                 page1
             </button>

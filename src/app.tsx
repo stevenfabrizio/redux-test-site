@@ -22,7 +22,7 @@ const App: React.FC = () => {
   <BrowserRouter>
     <Nav />
     <Routes>
-      <Route path='/' element={<PageOne />} />
+      <Route path='/p1' element={<PageOne />} />
       <Route path='/p2' element={<PageTwo />} />
     </Routes>
     <p>Page1 shows buttons and counter. Page2 is a different component and shows only counter. Redux is storing the counter and it is storing it in localstorage incase page is reloaded.</p>
