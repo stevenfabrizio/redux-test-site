@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const Nav: React.FC = () => {
+const Nav: React.FC = () => {
 
     return(
     <div className="header">
-        <Link to='/'>
+        <Link to='redux/p1'>
             <button>
                 page1
             </button>
         </Link>
 
-        <Link to='/p2'>
+        <Link to='redux/p2'>
             <button>
                 page2
             </button>
@@ -19,3 +19,5 @@ export const Nav: React.FC = () => {
     </div>
     );
 }
+
+export default Nav;
