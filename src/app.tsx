@@ -1,5 +1,5 @@
 import React from 'react' 
-import { BrowserRouter, Routes, Route } from 'react-router-dom' 
+import { Routes, Route, useNavigate} from 'react-router-dom' 
 
 import { useAppDispatch } from './app/hooks'
 import { loadLocalStorage } from './features/counter/counterSlice' 
@@ -10,26 +10,27 @@ import PageTwo from './pages/PageTwo';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   
   //on page load, fetch localstorage if it exists.
   React.useEffect(() => {
+    navigate('/')
+
     if (typeof localStorage.getItem("CounterLS") === 'string'){
-      dispatch(loadLocalStorage())
+      dispatch(loadLocalStorage()) 
     }
   },[])
 
   return(
   <>
-  <BrowserRouter>
     <Nav />
     <Routes>
-      <Route path='redux-test-site/' element={<PageOne />} />
+      <Route index element={<></>}/>
       <Route path='redux-test-site/p2' element={<PageTwo />} />
-      <Route index element={<PageOne />}/>
-      <Route path="*" element={<PageOne />}/>
+      <Route path="*" element={<p>Page not found!</p>}/>
+      <Route path='redux-test-site/' element={<PageOne />} />
     </Routes>
     <p>Page1 shows buttons and counter. Page2 is a different component and shows only counter. Redux is storing the counter and it is storing it in localstorage incase page is reloaded.</p>
-  </BrowserRouter>
   </>
   );
 }

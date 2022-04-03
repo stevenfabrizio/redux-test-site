@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '../app/hooks'
 import { decrement, increment } from '../features/counter/counterSlice'
 
 const PageOne = () => {
-  const count = useAppSelector(state => state.counter.value)
+  const count: number = useAppSelector(state => state.counter.value)
   const dispatch = useAppDispatch()
 
   return (

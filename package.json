@@ -2,11 +2,10 @@
   "name": "redux_thing",
   "version": "1.0.0",
   "description": "",
-  "main": "build/dist/index.js",
   "scripts": {
     "build": "webpack"
   },
-  "author": "",
+  "author": "stevie wonder",
   "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",

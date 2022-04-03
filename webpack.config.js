@@ -3,6 +3,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
+    // devServer: {
+    //   historyApiFallback: true,
+    // },
     plugins: [
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output

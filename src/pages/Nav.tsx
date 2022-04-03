@@ -16,6 +16,11 @@ const Nav: React.FC = () => {
                 page2
             </button>
         </Link>
+
+        <button 
+        onClick = {() => localStorage.removeItem('CounterLS')}>
+            Clear
+        </button>
     </div>
     );
 }

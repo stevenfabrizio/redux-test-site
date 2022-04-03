@@ -6379,7 +6379,8 @@ const Nav = () => {
         react.createElement(Link, { to: 'redux-test-site/' },
             react.createElement("button", null, "page1")),
         react.createElement(Link, { to: 'redux-test-site/p2' },
-            react.createElement("button", null, "page2"))));
+            react.createElement("button", null, "page2")),
+        react.createElement("button", { onClick: () => localStorage.removeItem('CounterLS') }, "Clear")));
 };
 /* harmony default export */ const pages_Nav = (Nav);
 
@@ -6416,20 +6417,21 @@ const PageTwo = () => {
 
 const App = () => {
     const dispatch = useAppDispatch();
+    const navigate = react_router_useNavigate();
     react.useEffect(() => {
+        navigate('/');
         if (typeof localStorage.getItem("CounterLS") === 'string') {
             dispatch(loadLocalStorage());
         }
     }, []);
     return (react.createElement(react.Fragment, null,
-        react.createElement(BrowserRouter, null,
-            react.createElement(pages_Nav, null),
-            react.createElement(Routes, null,
-                react.createElement(Route, { path: 'redux-test-site/', element: react.createElement(pages_PageOne, null) }),
-                react.createElement(Route, { path: 'redux-test-site/p2', element: react.createElement(pages_PageTwo, null) }),
-                react.createElement(Route, { index: true, element: react.createElement(pages_PageOne, null) }),
-                react.createElement(Route, { path: "*", element: react.createElement(pages_PageOne, null) })),
-            react.createElement("p", null, "Page1 shows buttons and counter. Page2 is a different component and shows only counter. Redux is storing the counter and it is storing it in localstorage incase page is reloaded."))));
+        react.createElement(pages_Nav, null),
+        react.createElement(Routes, null,
+            react.createElement(Route, { index: true, element: react.createElement(react.Fragment, null) }),
+            react.createElement(Route, { path: 'redux-test-site/p2', element: react.createElement(pages_PageTwo, null) }),
+            react.createElement(Route, { path: "*", element: react.createElement("p", null, "Page not found!") }),
+            react.createElement(Route, { path: 'redux-test-site/', element: react.createElement(pages_PageOne, null) })),
+        react.createElement("p", null, "Page1 shows buttons and counter. Page2 is a different component and shows only counter. Redux is storing the counter and it is storing it in localstorage incase page is reloaded.")));
 };
 /* harmony default export */ const app = (App);
 
@@ -6448,10 +6450,12 @@ const store = configureStore({
 
 
 
+
 __webpack_require__(279);
 react_dom.render(react.createElement(react.StrictMode, null,
-    react.createElement(components_Provider, { store: store },
-        react.createElement(app, null))), document.getElementById('root'));
+    react.createElement(BrowserRouter, null,
+        react.createElement(components_Provider, { store: store },
+            react.createElement(app, null)))), document.getElementById('root'));
 
 })();
 
