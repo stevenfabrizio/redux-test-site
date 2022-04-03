@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useAppDispatch } from '../app/hooks'
 
+import { useAppDispatch } from '../app/hooks'
 import { resetState } from '../features/counter/counterSlice'
 
 const Nav: React.FC = () => {
@@ -17,19 +17,19 @@ const Nav: React.FC = () => {
     <div className="header">
         <Link to='/'>
             <button>
-                page1
+                page 1
             </button>
         </Link>
 
         <Link to='/p2'>
             <button>
-                page2
+                page 2
             </button>
         </Link>
 
         <button 
         onClick = {() => clickedClear()}>
-            Clear
+            Reset
         </button>
     </div>
     );

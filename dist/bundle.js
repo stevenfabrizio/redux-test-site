@@ -484,6 +484,20 @@ exports.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!el(c))throw Er
 
 /***/ }),
 
+/***/ 745:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+var m = __webpack_require__(935);
+if (true) {
+  exports.createRoot = m.createRoot;
+  exports.hydrateRoot = m.hydrateRoot;
+} else { var i; }
+
+
+/***/ }),
+
 /***/ 935:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
@@ -680,8 +694,8 @@ var __webpack_exports__ = {};
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
 var react = __webpack_require__(294);
-// EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(935);
+// EXTERNAL MODULE: ./node_modules/react-dom/client.js
+var client = __webpack_require__(745);
 ;// CONCATENATED MODULE: ./node_modules/react-redux/es/components/Context.js
 
 var Context_ReactReduxContext = /*#__PURE__*/react.createContext(null);
@@ -1791,6 +1805,8 @@ var useSelector = /*#__PURE__*/createSelectorHook();
 
 
 
+// EXTERNAL MODULE: ./node_modules/react-dom/index.js
+var react_dom = __webpack_require__(935);
 ;// CONCATENATED MODULE: ./node_modules/react-redux/es/utils/reactBatchedUpdates.js
 /* eslint-disable import/no-unresolved */
 
@@ -6387,10 +6403,10 @@ const Nav = () => {
     };
     return (react.createElement("div", { className: "header" },
         react.createElement(Link, { to: '/' },
-            react.createElement("button", null, "page1")),
+            react.createElement("button", null, "page 1")),
         react.createElement(Link, { to: '/p2' },
-            react.createElement("button", null, "page2")),
-        react.createElement("button", { onClick: () => clickedClear() }, "Clear")));
+            react.createElement("button", null, "page 2")),
+        react.createElement("button", { onClick: () => clickedClear() }, "Reset")));
 };
 /* harmony default export */ const pages_Nav = (Nav);
 
@@ -6427,9 +6443,7 @@ const PageTwo = () => {
 
 const App = () => {
     const dispatch = useAppDispatch();
-    const navigate = react_router_useNavigate();
     react.useEffect(() => {
-        navigate('/');
         if (typeof localStorage.getItem("CounterLS") === 'string') {
             dispatch(loadLocalStorage());
         }
@@ -6462,10 +6476,11 @@ const store = configureStore({
 
 
 __webpack_require__(279);
-react_dom.render(react.createElement(react.StrictMode, null,
+const root = client.createRoot(document.getElementById("root"));
+root.render(react.createElement(react.StrictMode, null,
     react.createElement(HashRouter, null,
         react.createElement(components_Provider, { store: store },
-            react.createElement(app, null)))), document.getElementById('root'));
+            react.createElement(app, null)))));
 
 })();
 

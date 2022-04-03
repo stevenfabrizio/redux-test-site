@@ -1,7 +1,6 @@
 import React from 'react'
-// import { useSelector, useDispatch } from 'react-redux'
-import { useAppSelector, useAppDispatch } from '../app/hooks'
 
+import { useAppSelector, useAppDispatch } from '../app/hooks'
 import { decrement, increment } from '../features/counter/counterSlice'
 
 const PageOne = () => {
@@ -11,12 +10,14 @@ const PageOne = () => {
   return (
   <div>
     <button
-      onClick={() => dispatch(increment())}>
+    onClick={() => dispatch(increment())}>
       Increment
     </button>
+
     <span>{count}</span>
+
     <button
-      onClick={() => dispatch(decrement())}>
+    onClick={() => dispatch(decrement())}>
       Decrement
     </button>
   </div>

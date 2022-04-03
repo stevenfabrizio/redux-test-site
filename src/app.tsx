@@ -1,5 +1,5 @@
 import React from 'react' 
-import { Routes, Route, useNavigate} from 'react-router-dom' 
+import { Routes, Route } from 'react-router-dom' 
 
 import { useAppDispatch } from './app/hooks'
 import { loadLocalStorage } from './features/counter/counterSlice' 
@@ -10,16 +10,13 @@ import PageTwo from './pages/PageTwo';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   
   //on page load, fetch localstorage if it exists.
   React.useEffect(() => {
-    navigate('/')
-
     if (typeof localStorage.getItem("CounterLS") === 'string'){
       dispatch(loadLocalStorage()) 
     }
-  },[])
+  }, [])
 
   return(
   <>
