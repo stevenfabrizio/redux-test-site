@@ -1867,7 +1867,7 @@ var PopStateEventType = 'popstate';
  * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createbrowserhistory
  */
 
-function createBrowserHistory(options) {
+function history_createBrowserHistory(options) {
   if (options === void 0) {
     options = {};
   }
@@ -1943,7 +1943,7 @@ function createBrowserHistory(options) {
 
   if (index == null) {
     index = 0;
-    globalHistory.replaceState(extends_extends({}, globalHistory.state, {
+    globalHistory.replaceState(_extends({}, globalHistory.state, {
       idx: index
     }), '');
   }
@@ -1958,7 +1958,7 @@ function createBrowserHistory(options) {
       state = null;
     }
 
-    return readOnly(extends_extends({
+    return readOnly(_extends({
       pathname: location.pathname,
       hash: '',
       search: ''
@@ -2098,7 +2098,7 @@ function createBrowserHistory(options) {
  * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createhashhistory
  */
 
-function history_createHashHistory(options) {
+function createHashHistory(options) {
   if (options === void 0) {
     options = {};
   }
@@ -2189,7 +2189,7 @@ function history_createHashHistory(options) {
 
   if (index == null) {
     index = 0;
-    globalHistory.replaceState(_extends({}, globalHistory.state, {
+    globalHistory.replaceState(extends_extends({}, globalHistory.state, {
       idx: index
     }), '');
   }
@@ -2216,7 +2216,7 @@ function history_createHashHistory(options) {
       state = null;
     }
 
-    return readOnly(_extends({
+    return readOnly(extends_extends({
       pathname: location.pathname,
       hash: '',
       search: ''
@@ -3571,7 +3571,7 @@ function BrowserRouter(_ref) {
     children,
     window
   } = _ref;
-  let historyRef = (0,react.useRef)();
+  let historyRef = useRef();
 
   if (historyRef.current == null) {
     historyRef.current = createBrowserHistory({
@@ -3580,12 +3580,12 @@ function BrowserRouter(_ref) {
   }
 
   let history = historyRef.current;
-  let [state, setState] = (0,react.useState)({
+  let [state, setState] = useState({
     action: history.action,
     location: history.location
   });
-  (0,react.useLayoutEffect)(() => history.listen(setState), [history]);
-  return /*#__PURE__*/(0,react.createElement)(react_router_Router, {
+  useLayoutEffect(() => history.listen(setState), [history]);
+  return /*#__PURE__*/createElement(Router, {
     basename: basename,
     children: children,
     location: state.location,
@@ -3604,7 +3604,7 @@ function HashRouter(_ref2) {
     children,
     window
   } = _ref2;
-  let historyRef = useRef();
+  let historyRef = (0,react.useRef)();
 
   if (historyRef.current == null) {
     historyRef.current = createHashHistory({
@@ -3613,12 +3613,12 @@ function HashRouter(_ref2) {
   }
 
   let history = historyRef.current;
-  let [state, setState] = useState({
+  let [state, setState] = (0,react.useState)({
     action: history.action,
     location: history.location
   });
-  useLayoutEffect(() => history.listen(setState), [history]);
-  return /*#__PURE__*/createElement(Router, {
+  (0,react.useLayoutEffect)(() => history.listen(setState), [history]);
+  return /*#__PURE__*/(0,react.createElement)(react_router_Router, {
     basename: basename,
     children: children,
     location: state.location,
@@ -6345,7 +6345,7 @@ N();
 ;// CONCATENATED MODULE: ./src/features/counter/counterSlice.ts
 
 const initialState = {
-    value: 0
+    value: 100
 };
 const counterSlice = createSlice({
     name: 'counter',
@@ -6364,23 +6364,33 @@ const counterSlice = createSlice({
         },
         incrementByAmount: (state, action) => {
             state.value += action.payload;
+        },
+        resetState: state => {
+            state.value = 100;
         }
     }
 });
-const { increment, decrement, loadLocalStorage, incrementByAmount } = counterSlice.actions;
+const { increment, decrement, loadLocalStorage, incrementByAmount, resetState } = counterSlice.actions;
 const selectCount = (state) => state.counter.value;
 /* harmony default export */ const counter_counterSlice = (counterSlice.reducer);
 
 ;// CONCATENATED MODULE: ./src/pages/Nav.tsx
 
 
+
+
 const Nav = () => {
+    const dispatch = useAppDispatch();
+    const clickedClear = () => {
+        localStorage.removeItem('CounterLS');
+        dispatch(resetState());
+    };
     return (react.createElement("div", { className: "header" },
-        react.createElement(Link, { to: 'redux-test-site/' },
+        react.createElement(Link, { to: '/' },
             react.createElement("button", null, "page1")),
-        react.createElement(Link, { to: 'redux-test-site/p2' },
+        react.createElement(Link, { to: '/p2' },
             react.createElement("button", null, "page2")),
-        react.createElement("button", { onClick: () => localStorage.removeItem('CounterLS') }, "Clear")));
+        react.createElement("button", { onClick: () => clickedClear() }, "Clear")));
 };
 /* harmony default export */ const pages_Nav = (Nav);
 
@@ -6427,10 +6437,10 @@ const App = () => {
     return (react.createElement(react.Fragment, null,
         react.createElement(pages_Nav, null),
         react.createElement(Routes, null,
-            react.createElement(Route, { index: true, element: react.createElement(react.Fragment, null) }),
-            react.createElement(Route, { path: 'redux-test-site/p2', element: react.createElement(pages_PageTwo, null) }),
+            react.createElement(Route, { index: true, element: react.createElement(pages_PageOne, null) }),
+            react.createElement(Route, { path: '/p2', element: react.createElement(pages_PageTwo, null) }),
             react.createElement(Route, { path: "*", element: react.createElement("p", null, "Page not found!") }),
-            react.createElement(Route, { path: 'redux-test-site/', element: react.createElement(pages_PageOne, null) })),
+            react.createElement(Route, { path: '/', element: react.createElement(pages_PageOne, null) })),
         react.createElement("p", null, "Page1 shows buttons and counter. Page2 is a different component and shows only counter. Redux is storing the counter and it is storing it in localstorage incase page is reloaded.")));
 };
 /* harmony default export */ const app = (App);
@@ -6453,7 +6463,7 @@ const store = configureStore({
 
 __webpack_require__(279);
 react_dom.render(react.createElement(react.StrictMode, null,
-    react.createElement(BrowserRouter, null,
+    react.createElement(HashRouter, null,
         react.createElement(components_Provider, { store: store },
             react.createElement(app, null)))), document.getElementById('root'));
 

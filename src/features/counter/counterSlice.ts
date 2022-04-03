@@ -8,7 +8,7 @@ interface CounterState {
 
 // Define the initial state using that type
 const initialState: CounterState = {
-  value: 0
+  value: 100
 }
 
 export const counterSlice = createSlice({
@@ -32,12 +32,15 @@ export const counterSlice = createSlice({
     },
     incrementByAmount: (state, action) => {
       state.value += action.payload
+    },
+    resetState: state => {
+      state.value = 100
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, loadLocalStorage, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, loadLocalStorage, incrementByAmount, resetState } = counterSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCount = (state: RootState) => state.counter.value
