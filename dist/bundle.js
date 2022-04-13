@@ -6433,7 +6433,7 @@ const PageTwo = () => {
 };
 /* harmony default export */ const pages_PageTwo = (PageTwo);
 
-;// CONCATENATED MODULE: ./src/app.tsx
+;// CONCATENATED MODULE: ./src/App.tsx
 
 
 
@@ -6457,7 +6457,7 @@ const App = () => {
             react.createElement(Route, { path: '/', element: react.createElement(pages_PageOne, null) })),
         react.createElement("p", null, "Page1 shows buttons and counter. Page2 is a different component and shows only counter. Redux is storing the counter and it is storing it in localstorage incase page is reloaded.")));
 };
-/* harmony default export */ const app = (App);
+/* harmony default export */ const src_App = (App);
 
 ;// CONCATENATED MODULE: ./src/app/store.ts
 
@@ -6480,7 +6480,7 @@ const root = client.createRoot(document.getElementById("root"));
 root.render(react.createElement(react.StrictMode, null,
     react.createElement(HashRouter, null,
         react.createElement(components_Provider, { store: store },
-            react.createElement(app, null)))));
+            react.createElement(src_App, null)))));
 
 })();
 
